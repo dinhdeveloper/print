@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
     volatile boolean stopWorker;
 
     TextView lblPrinterName;
-    EditText textBox;
+    //EditText textBox;
+
+    TextView text1,text2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnDisconnect = (Button) findViewById(R.id.btnDisconnect);
         Button btnPrint = (Button) findViewById(R.id.btnPrint);
 
-        textBox = (EditText) findViewById(R.id.txtText);
+        //textBox = (EditText) findViewById(R.id.txtText);
+        text1 =  findViewById(R.id.text1);
+        text2 = findViewById(R.id.text2);
 
         lblPrinterName = (TextView) findViewById(R.id.lblPrinterName);
 
@@ -204,9 +208,13 @@ public class MainActivity extends AppCompatActivity {
     // Printing Text to Bluetooth Printer //
     void printData() throws  IOException{
         try{
-            String msg = "HAHAHAH";
+            String msg = text1.getText().toString();
+            String ms2 = text2.getText().toString();
             msg+="\n";
+            ms2+="\n";
             outputStream.write(msg.getBytes());
+            outputStream.write(ms2.getBytes());
+
             outputStream.flush();
         }catch (Exception ex){
             ex.printStackTrace();
